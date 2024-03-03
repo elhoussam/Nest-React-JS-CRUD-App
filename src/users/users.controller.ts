@@ -28,8 +28,8 @@ export class UsersController {
     return this.service.findOne(id);
   }
   @Put('/:id')
-  Update(@Param('id') id: string) {
-    return this.service.update(id);
+  Update(@Param('id') id: string, @Body() body: UserDTO) {
+    return this.service.update(id, body);
   }
 
   @Delete('/:id')
@@ -38,6 +38,7 @@ export class UsersController {
   }
   @Post('/search')
   Search(@Query('key') key) {
+    console.log('hello' + key);
     return this.service.search(key);
   }
 }
