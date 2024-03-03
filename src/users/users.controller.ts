@@ -6,16 +6,18 @@ import {
   Param,
   Delete,
   Query,
+  Body,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
+import { UserDTO } from 'src/dto/users.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly service: UsersService) {}
 
   @Post()
-  Add() {
-    return this.service.Add();
+  Add(@Body() body: UserDTO) {
+    return this.service.Add(body);
   }
   @Get()
   AllUsers() {
