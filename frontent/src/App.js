@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { GlobalContext } from './context/GlobalWrapper';
 import {
   Text,
@@ -13,6 +13,13 @@ import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
 import Row from './component/Row';
 
 function App() {
+  const { fetchUsers, users } = useContext(GlobalContext);
+
+  // to prevent fetching data when page  reloading
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   // const {age} = useContext( GlobalContext);
   return (
     <div className="App">
@@ -64,11 +71,9 @@ function App() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Row />
-                  <Row />
-                  <Row />
-                  <Row />
-                  <Row />
+                  {users?.map((userObj) => {
+                    return <Row userData={userObj} />;
+                  })}
                 </Tbody>
               </Table>
             </TableContainer>

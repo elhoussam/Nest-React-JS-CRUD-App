@@ -1,21 +1,17 @@
 import { Tr, Td, Box, Button, Avatar } from '@chakra-ui/react';
-import {
-  AiFillDelete,
-  AiFillEdit,
-  AiFillInfoCircle,
-  TiInfoLarge,
-} from 'react-icons/ai';
+import { AiFillDelete, AiFillEdit, AiFillInfoCircle } from 'react-icons/ai';
 
-function Row() {
+function Row({ userData }) {
+  // console.log(userData);
   return (
-    <Tr>
+    <Tr id={userData._id}>
       <Td>
-        <Avatar size="sm" name="NOUAR KHERKHACHI HOUSSAM"></Avatar>
+        <Avatar size="sm" name={userData.fullname}></Avatar>
       </Td>
-      <Td>NOUAR KHERKHACHI Houssam</Td>
-      <Td>NOUAR@EMAIL.COM</Td>
-      <Td>23</Td>
-      <Td>Algeria</Td>
+      <Td>{userData.fullname}</Td>
+      <Td>{userData.email}</Td>
+      <Td>{userData.age}</Td>
+      <Td>{userData.country}</Td>
       <Td>
         <Box display="flex" gap="1">
           <Button size="sm" colorScheme={'blue'}>
