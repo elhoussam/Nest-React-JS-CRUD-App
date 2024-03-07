@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from './context/GlobalWrapper';
 import {
   Text,
@@ -13,8 +13,16 @@ import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
 import Row from './component/Row';
 
 function App() {
-  const { fetchUsers, users } = useContext(GlobalContext);
-
+  const { fetchUsers, searchUsers, users } = useContext(GlobalContext);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchHandler = () => {
+    // alert(searchQuery);
+    searchUsers(searchQuery);
+  };
+  const onChangeHandler = (e) => {
+    // alert(e.target.value);
+    setSearchQuery(e.target.value);
+  };
   // to prevent fetching data when page  reloading
   useEffect(() => {
     fetchUsers();
@@ -27,7 +35,11 @@ function App() {
         <Box boxShadow={'base'} rounded={'lg'} p="4">
           <Box gap={'2'} display={'flex'}>
             <FormControl>
-              <Input boxShadow={'base'} type="text" />
+              <Input
+                boxShadow={'base'}
+                type="text"
+                onChange={onChangeHandler}
+              />
             </FormControl>{' '}
             <Button
               leftIcon={<AiOutlineSearch />}
@@ -35,6 +47,7 @@ function App() {
               variant={'outline'}
               maxW={'300px'}
               minW="120px"
+              onClick={searchHandler}
             >
               Search
             </Button>
