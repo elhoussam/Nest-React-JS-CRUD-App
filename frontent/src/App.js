@@ -11,9 +11,11 @@ import {
 import { AiOutlineSearch, AiOutlineUserDelete } from 'react-icons/ai';
 import { Table, Thead, Tbody, Tr, Th, TableContainer } from '@chakra-ui/react';
 import Row from './component/Row';
+import { DrawerSample } from './component/DrawerSample';
 
 function App() {
-  const { fetchUsers, searchUsers, users } = useContext(GlobalContext);
+  const { fetchUsers, searchUsers, users, isOpen, onOpen, onClose } =
+    useContext(GlobalContext);
   const [searchQuery, setSearchQuery] = useState('');
   const searchHandler = () => {
     // alert(searchQuery);
@@ -66,6 +68,7 @@ function App() {
               variant={'outline'}
               maxW={'300px'}
               minW="120px"
+              onClick={onOpen}
             >
               Add User
             </Button>
@@ -92,6 +95,7 @@ function App() {
             </TableContainer>
           </Box>
         </Box>
+        <DrawerSample></DrawerSample>
       </Container>
     </div>
   );

@@ -1,9 +1,11 @@
 import { createContext, useState } from 'react';
 import axios from 'axios';
-import { useToast } from '@chakra-ui/react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
 export const GlobalContext = createContext();
 
 export default function Wrapper({ children }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [users, setUsers] = useState([]);
   const toast = useToast();
 
@@ -50,7 +52,16 @@ export default function Wrapper({ children }) {
   };
   return (
     <GlobalContext.Provider
-      value={{ age: 41, fetchUsers, searchUsers, deleteUser, users }}
+      value={{
+        age: 41,
+        fetchUsers,
+        searchUsers,
+        deleteUser,
+        users,
+        isOpen,
+        onOpen,
+        onClose,
+      }}
     >
       {children}
     </GlobalContext.Provider>
