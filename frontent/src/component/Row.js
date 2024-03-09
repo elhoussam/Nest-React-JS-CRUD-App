@@ -1,7 +1,10 @@
 import { Tr, Td, Box, Button, Avatar } from '@chakra-ui/react';
+import { useContext } from 'react';
 import { AiFillDelete, AiFillEdit, AiFillInfoCircle } from 'react-icons/ai';
+import { GlobalContext } from '../context/GlobalWrapper';
 
 function Row({ userData }) {
+  const { deleteUser } = useContext(GlobalContext);
   // console.log(userData);
   return (
     <Tr id={userData._id}>
@@ -20,7 +23,11 @@ function Row({ userData }) {
           <Button size="sm" colorScheme={'green'}>
             <AiFillInfoCircle />
           </Button>
-          <Button size="sm" colorScheme={'red'}>
+          <Button
+            size="sm"
+            colorScheme={'red'}
+            onClick={() => deleteUser(userData._id)}
+          >
             <AiFillDelete />
           </Button>
         </Box>
