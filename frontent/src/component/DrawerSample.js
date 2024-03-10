@@ -16,8 +16,8 @@ import { GlobalContext } from '../context/GlobalWrapper';
 import InputsGroup from './InputsGroup';
 
 export function DrawerSample() {
-  const { isOpen, onOpen, onClose, addUser } = useContext(GlobalContext);
-  const [form, setForm] = useState({});
+  const { isOpen, onOpen, onClose, addUser, updateUser, form, setForm } =
+    useContext(GlobalContext);
 
   const onChangeHandler = (e) => {
     setForm({
@@ -27,7 +27,11 @@ export function DrawerSample() {
   };
 
   const onAdd = () => {
-    addUser(form);
+    addUser(form, setForm);
+  };
+
+  const onUpdate = () => {
+    updateUser(form, setForm);
   };
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
@@ -40,12 +44,22 @@ export function DrawerSample() {
           <Stack spacing={'24px'}>
             <InputsGroup
               fieldname="fullname"
+              value={form?.fullname}
               onChangeHandler={onChangeHandler}
             />
-            <InputsGroup fieldname="email" onChangeHandler={onChangeHandler} />
-            <InputsGroup fieldname="age" onChangeHandler={onChangeHandler} />
+            <InputsGroup
+              fieldname="email"
+              value={form?.email}
+              onChangeHandler={onChangeHandler}
+            />
+            <InputsGroup
+              fieldname="age"
+              value={form?.age}
+              onChangeHandler={onChangeHandler}
+            />
             <InputsGroup
               fieldname="country"
+              value={form?.country}
               onChangeHandler={onChangeHandler}
             />
           </Stack>
@@ -55,7 +69,7 @@ export function DrawerSample() {
           <Button variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme="blue" onClick={() => onAdd()}>
+          <Button colorScheme="blue" onClick={form ? onUpdate : onAdd()}>
             Save
           </Button>
         </DrawerFooter>

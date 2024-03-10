@@ -4,8 +4,14 @@ import { AiFillDelete, AiFillEdit, AiFillInfoCircle } from 'react-icons/ai';
 import { GlobalContext } from '../context/GlobalWrapper';
 
 function Row({ userData }) {
-  const { deleteUser } = useContext(GlobalContext);
+  const { deleteUser, updateUser, onOpen, onClose, form, setForm } =
+    useContext(GlobalContext);
   // console.log(userData);
+  const updateUserHandler = (userObject) => {
+    console.log(userObject);
+    setForm(userObject);
+    onOpen();
+  };
   return (
     <Tr id={userData._id}>
       <Td>
@@ -17,7 +23,11 @@ function Row({ userData }) {
       <Td>{userData.country}</Td>
       <Td>
         <Box display="flex" gap="1">
-          <Button size="sm" colorScheme={'blue'}>
+          <Button
+            size="sm"
+            colorScheme={'blue'}
+            onClick={() => updateUserHandler(userData)}
+          >
             <AiFillEdit />
           </Button>
           <Button size="sm" colorScheme={'green'}>

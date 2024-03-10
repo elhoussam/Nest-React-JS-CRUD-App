@@ -5,7 +5,7 @@ export const GlobalContext = createContext();
 
 export default function Wrapper({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [form, setForm] = useState({});
   const [users, setUsers] = useState([]);
   const toast = useToast();
 
@@ -51,18 +51,49 @@ export default function Wrapper({ children }) {
       });
   };
 
-  const addUser = (object) => {
-    console.log(object);
+  const addUser = (object, clearForm) => {
+    // console.log(object);
     axios
       .post('api/users/', object)
       .then((res) => {
-        setUsers([...users, res.data]);
+        setUsers([res.data, ...users]);
         toast({
           title: `User ${res.data.fullname} Added.`,
           status: 'success',
-          duration: 1000,
+          duration: 4000,
           isClosable: true,
         });
+        clearForm({});
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        err.response.data?.message.reverse().map((msg) => {
+          toast({
+            // title: 'error',
+            description: msg,
+
+            status: 'error',
+            duration: 4000,
+            isClosable: true,
+          });
+        });
+      });
+  };
+
+  const updateUser = (object, clearForm) => {
+    axios
+      .put(`api/users/${object._id}`, object)
+      .then((res) => {
+        fetchUsers();
+        toast({
+          title: `User ${res.data.fullname} Updated.`,
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+        });
+        clearForm({});
+        onClose();
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -85,11 +116,14 @@ export default function Wrapper({ children }) {
         fetchUsers,
         searchUsers,
         deleteUser,
+        updateUser,
         addUser,
         users,
         isOpen,
         onOpen,
         onClose,
+        form,
+        setForm,
       }}
     >
       {children}
