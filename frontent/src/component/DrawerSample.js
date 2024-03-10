@@ -11,13 +11,24 @@ import {
   Stack,
   InputGroup,
 } from '@chakra-ui/react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from '../context/GlobalWrapper';
 import InputsGroup from './InputsGroup';
 
 export function DrawerSample() {
-  const { isOpen, onOpen, onClose } = useContext(GlobalContext);
+  const { isOpen, onOpen, onClose, addUser } = useContext(GlobalContext);
+  const [form, setForm] = useState({});
 
+  const onChangeHandler = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onAdd = () => {
+    addUser(form);
+  };
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
@@ -27,10 +38,16 @@ export function DrawerSample() {
 
         <DrawerBody>
           <Stack spacing={'24px'}>
-            <InputsGroup fieldname="Fullname" />
-            <InputsGroup fieldname="Fmail" />
-            <InputsGroup fieldname="Age" />
-            <InputsGroup fieldname="Country" />
+            <InputsGroup
+              fieldname="fullname"
+              onChangeHandler={onChangeHandler}
+            />
+            <InputsGroup fieldname="email" onChangeHandler={onChangeHandler} />
+            <InputsGroup fieldname="age" onChangeHandler={onChangeHandler} />
+            <InputsGroup
+              fieldname="country"
+              onChangeHandler={onChangeHandler}
+            />
           </Stack>
         </DrawerBody>
 
@@ -38,7 +55,9 @@ export function DrawerSample() {
           <Button variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme="blue">Save</Button>
+          <Button colorScheme="blue" onClick={() => onAdd()}>
+            Save
+          </Button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

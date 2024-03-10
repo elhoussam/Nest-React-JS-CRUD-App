@@ -50,6 +50,34 @@ export default function Wrapper({ children }) {
         console.log(err.response.data);
       });
   };
+
+  const addUser = (object) => {
+    console.log(object);
+    axios
+      .post('api/users/', object)
+      .then((res) => {
+        setUsers([...users, res.data]);
+        toast({
+          title: `User ${res.data.fullname} Added.`,
+          status: 'success',
+          duration: 1000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        err.response.data?.message.reverse().map((msg) => {
+          toast({
+            // title: 'error',
+            description: msg,
+
+            status: 'error',
+            duration: 4000,
+            isClosable: true,
+          });
+        });
+      });
+  };
   return (
     <GlobalContext.Provider
       value={{
@@ -57,6 +85,7 @@ export default function Wrapper({ children }) {
         fetchUsers,
         searchUsers,
         deleteUser,
+        addUser,
         users,
         isOpen,
         onOpen,
