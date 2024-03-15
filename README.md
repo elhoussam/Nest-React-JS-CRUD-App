@@ -1,73 +1,61 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Full-Stack CRUD Application with NestJS, ReactJS, and MongoDB
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This repository contains a full-stack CRUD (Create, Read, Update, Delete) application built using the following technologies:
 
-## Description
+- **NestJS**: Backend framework to handle server-side logic.
+- **ReactJS**: Frontend library to build the user interface.
+- **MongoDB**: NoSQL database to store application data.
+- **Docker**: To containerize the application and run MongoDB locally.
+- **Context API**: To manage the state in React.
+- **Chakra UI**: To provide a set of accessible and customizable UI components.
+- **React Icons**: To include icons in the application.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
 
-## Installation
+- Create, Read, Update, and Delete operations for managing data.
+- Seamless integration between backend and frontend.
+- Containerized environment for easy setup and deployment.
 
-```bash
-$ npm install
-```
+## Technologies and Their Roles
 
-## Running the app
+### Backend
 
-```bash
-# development
-$ npm run start
+- **NestJS**
+  - _Role_: Manages server-side logic, routes, and controllers to process requests and interact with the MongoDB database.
 
-# watch mode
-$ npm run start:dev
+### Frontend
 
-# production mode
-$ npm run start:prod
-```
+- **ReactJS**
 
-## Test
+  - _Role_: Manages the client-side logic and rendering of the application, interacting with the backend API to perform CRUD operations.
 
-```bash
-# unit tests
-$ npm run test
+- **Context API**
 
-# e2e tests
-$ npm run test:e2e
+  - _Role_: Manages application-wide state, making it easier to handle and share data across different components.
 
-# test coverage
-$ npm run test:cov
-```
+- **Chakra UI**
 
-## Support
+  - _Role_: Provides ready-to-use UI components for a consistent and customizable design.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **React Icons**
+  - _Role_: Adds icons to the application for better visual representation and user experience.
 
-## Stay in touch
+### Database
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **MongoDB**
+  - _Role_: Stores and manages the data used in the application, supporting CRUD operations performed by the backend.
+
+### Containerization
+
+- **Docker**
+  - _Role_: Containerizes the MongoDB database, providing an isolated environment for running the database locally.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License.
